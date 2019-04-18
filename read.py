@@ -66,8 +66,7 @@ def model(link):
                     break
                 
             subset_number = sum(len(sd) for sd in si)
-                
-    #        Read the gene info table
+            #  Read the gene info table
 
             for line in f:
                 if "!dataset_table_begin" in line:

@@ -42,9 +42,6 @@ def connect(directory_1, directory_2, key_address, user, server):
         f.write('ssh -Y -i ' + str(key_address) + ' ' + str(user) + \
             '@' + str(server))
 
-from inputs import *
-connect(directory_1, directory_2, key_address, user, server)
-
 
 def sync(directory_1, directory_2, key_address, user, server):
     """

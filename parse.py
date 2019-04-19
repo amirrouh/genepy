@@ -45,7 +45,7 @@ def read_geo(link):
         pass
 
     # Data input dimension to simplify is defined (None => imports all the genes unless number of genes are declared)
-    data_dim = None
+    data_dim = 10
 
     with gzip.open('temp/' + file_name, 'rt') as f:
         #    sd: subset description
@@ -80,6 +80,16 @@ def read_geo(link):
     new_header = ge.iloc[0]
     ge.columns = new_header
     ge = ge[1:]
+
+
+    '''
+    #   Here, we create a temporary directory to store needed files
+    ge.to_pickle('temp/ge')
+    pickle.dump(sd , open( 'temp/sd', 'wb' ))
+    pickle.dump(si , open( 'temp/si', 'wb' ))
+    '''
+
+
     ge_array = np.array(ge)
     d = ge_array[:, 2:].astype(float)
 
@@ -111,5 +121,11 @@ def read_geo(link):
 
     #   This part randomly shuffles the data to be ready for training and testing purposes
     np.random.shuffle(dataset)
+
+    # This file will be saved into temp folder in case of any need for review
+    np.savetxt('temp/dataset.csv', dataset, fmt='%.3f', delimiter=',', newline='\n', header='')
+
+    # This binary file will be save in the temp folder for faster load in other modules
+    np.save('temp/dataset_binary', dataset)
 
     return dataset

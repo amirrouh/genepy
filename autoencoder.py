@@ -50,8 +50,7 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
     runtime : float
         Training runtime in seconds
     error: float
-        error percentage of the autoencoder (difference between reconstructed 
-        data and input)
+        The autoencoder average error (%)
     """
     #   Import required libraries
     from keras import callbacks

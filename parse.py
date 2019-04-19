@@ -9,14 +9,11 @@ file  : str
   
 Returns
 -------
-This modules save three foloowing pickle files into temp folder in the working directory 
-sd  : list
-  Subset descriptions
-si  : list
-  Subset Indices for subset discriptions, to load one discription indices, (i.e. to load a list of 
-  subset indices for the n_th subset description, use: si[n])
-ge  : pandas dataframe
-  Gene expression values and a numpy array
+dataset : numpy array
+    dataset is a numpy array. Each row represents one cell gene expression data, the i_th column
+    from the left shows the i_th gene expression values from the top in row input data table and
+    the last column on the right shows the subset description type 0 being the first one showing 
+    in the input file.
 """
 
 
@@ -85,9 +82,44 @@ def read_geo(link):
     ge = ge[1:]
 
 
+    '''
     #   Here, we create a temporary directory to store needed files
     ge.to_pickle('temp/ge')
     pickle.dump(sd , open( 'temp/sd', 'wb' ))
     pickle.dump(si , open( 'temp/si', 'wb' ))
+    '''
 
-    return
+
+    ge_array = np.array(ge)
+    d = ge_array[:, 2:].astype(float)
+
+    # Convert numpy array to training format for SVM solver
+    data = []
+    for i in range(len(d[0,:])):
+        data.append(d[:data_dim,i])
+    data = np.array(data)
+
+    #   Assign numbers to subset types and make a target vector for classification
+    labels = []
+    for i in range(0, len(sd)):
+        labels.append(len(si[i]) * [i])
+    
+    #   Merge the target groups (each type is a list in python, 
+    #   this part merges the parts to have unit target vector)
+    label_tmp = []
+    for j in range(len(labels)):
+        label_tmp += labels[j]
+    labels = np.array(label_tmp)
+
+    # dimension of input gene expression
+    label_dimension = len(ge_array[0,2:])
+    labels = labels.reshape((label_dimension,1))
+
+
+    #   This line joins the data and labels as a new 2D array
+    dataset = np.concatenate((data, labels), axis=1)
+
+    #   This part randomly shuffles the data to be ready for training and testing purposes
+    np.random.shuffle(dataset)
+
+    return dataset

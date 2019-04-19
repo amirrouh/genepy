@@ -47,9 +47,9 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
         Gives the reconstructed data from the input  
     cell_types: list
         Gives a list of integers represent cell types for the given input data
-    runtime : float
+    auto_runtime : float
         Training runtime in seconds
-    error: float
+    auto_err: float
         The autoencoder average error (%)
     """
     #   Import required libraries

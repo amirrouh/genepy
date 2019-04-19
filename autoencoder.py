@@ -63,6 +63,7 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
     import numpy as np
     from matplotlib import pyplot as plt
     from matplotlib.pyplot import draw, show
+    import pickle
     import time
 
     #   starting time is measured to compare performance"""
@@ -77,7 +78,7 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
     input_size = len(input_data[0, :])
 
     #   Split cell types list from the raw data and keep it
-    cell_types = dataset[:,-1]
+    labels = dataset[:,-1]
 
     #   Split training and testing data from the input dataset
     percent_training = int(len(input_data[:, 0]) * (train_percent/100))
@@ -214,5 +215,8 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
     latent = encoder.predict(input_data)
     reconstructed = autoencoder.predict(input_data)
 
-
+    #   exporting latent file and labels for classifier
+    pickle.dump(latent, open('temp/latent', 'wb'))
+    pickle.dump(labels, open('temp/labels', 'wb'))
+    
     return input_data, latent, reconstructed, cell_types, auto_runtime, auto_err

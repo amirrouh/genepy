@@ -1,17 +1,22 @@
-def param():
+def parametrize(parameter, value):
     """
     This module has all the parameter needed to run the model
 
     Parameters
     ----------
+    parameter: str
+        Parameters name which is to be changed
+    value: NA
+        Value of the parameter which is changing
 
     Returns
     -------
-
+    parameters : dict
+        Return a dictionary of all the parameters and the values
     """
 
     #   Server parameters
-    param = {'directory_1':'folder_address_you_want_to_sync_on_your_machine',
+    parameters = {'directory_1':'folder_address_you_want_to_sync_on_your_machine',
         'directory_2': 'folder_address_you_want_to_sync_on_the server',
         'key_address': 'full_address_to_your_key_file',
         'user': 'your_username', 'server': 'newton.ist.ucf.edu',\
@@ -27,3 +32,7 @@ def param():
 
     #   SVM parameters
         'train_percent' : 75, 'gamma': 0.0001, 'c' : 1000000}
+
+    parameters[parameter] = value
+    
+    return parameters

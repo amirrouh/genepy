@@ -80,16 +80,6 @@ def read_geo(link):
     new_header = ge.iloc[0]
     ge.columns = new_header
     ge = ge[1:]
-
-
-    '''
-    #   Here, we create a temporary directory to store needed files
-    ge.to_pickle('temp/ge')
-    pickle.dump(sd , open( 'temp/sd', 'wb' ))
-    pickle.dump(si , open( 'temp/si', 'wb' ))
-    '''
-
-
     ge_array = np.array(ge)
     d = ge_array[:, 2:].astype(float)
 

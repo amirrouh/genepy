@@ -16,3 +16,5 @@ I appreciate your contributions in this project by citations, donations or sugge
 <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
 </form>
 </html>
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](YOUR_EMAIL_CODE)

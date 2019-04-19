@@ -69,7 +69,7 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
     time_start = time.time()
 
     #   Importing the database parsed from the input file
-    dataset = np.load('dataset_binary.npy')
+    dataset = np.load('temp/dataset_binary.npy')
 
     #   PErforme log transform and normalization before analysis
     input_data =np.log(dataset[:,:-1]) / np.log(2)
@@ -218,4 +218,4 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
     pickle.dump(latent, open('temp/latent', 'wb'))
     pickle.dump(labels, open('temp/labels', 'wb'))
     
-    return input_data, latent, reconstructed, cell_types, auto_runtime, auto_err
+    return input_data, latent, reconstructed, labels, auto_runtime, auto_err

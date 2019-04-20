@@ -8,6 +8,7 @@ def change_var(parameter, values):
     """
     This module changes a parameters by the values provided and returns 
     autoencoder and SVM runtime and errors.
+    This function saves the runtime and accuracies in the temp folder
 
     parameters
     ----------
@@ -37,6 +38,7 @@ def change_var(parameter, values):
     from svm import classify
     from bash import connect
     from parameters import parametrize
+    import numpy as np
 
 
     #   Run the functions to assess performance, the inputs are passed in shape of dictionary
@@ -62,4 +64,6 @@ def change_var(parameter, values):
         svm_runtime.append(s_runtime)
         svm_err.append(a_err)
     
+    #   Saves a copy of runtime and accuracy .out file in temp folder with parameter's name
+    np.savetxt('temp/' + str(parameter) + '_change_out.txt', [auto_runtime, auto_err, svm_runtime, svm_err], fmt ='%.3f')
     return auto_runtime, auto_err, svm_runtime, svm_err

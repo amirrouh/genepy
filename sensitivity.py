@@ -9,8 +9,9 @@ def change_var(parameter, values):
     This module changes a parameters by the values provided and returns 
     autoencoder and SVM runtime and errors.
 
-    parameter: str
+    parameters
     ----------
+    parameter: str
         Parameters name which is to be changed
     value: NA
         Value of the parameter which is changing
@@ -30,7 +31,7 @@ def change_var(parameter, values):
     svm_err : float
         SVM average error in percentage
     """
-
+    #   Import required libraries
     from parse import read
     from autoencoder import autoencoder
     from svm import classify
@@ -38,27 +39,24 @@ def change_var(parameter, values):
     from parameters import parametrize
 
 
-    def whole_model(parameters):
-        read(link, input_dim)
+    #   Run the functions to assess performance, the inputs are passed in shape of dictionary
+    def whole_model(**kwargs):
+        read(kwargs['link'], kwargs['input_dim'])
         _, _, _, _, auto_runtime, auto_err = \
-            autoencoder(epoch, batch, latent,
-                        encoder_o, encoder_i, decoder_i, decoder_o, train_percent, lam,
-                        norm_order, loss_plot)
-
-        _, svm_runtime, svm_err = classify(gamma, c, train_percent)
+            autoencoder(kwargs['epoch'], kwargs['batch'], kwargs['latent'],
+                        kwargs['encoder_o'], kwargs['encoder_i'], kwargs['decoder_i'], 
+                        kwargs['decoder_o'], kwargs['train_percent'], kwargs['lam'], 
+                        kwargs['norm_order'], kwargs['loss_plot'])
+        _, svm_runtime, svm_err = classify(kwargs['gamma'], kwargs['c'], kwargs['train_percent'])
         return auto_runtime, auto_err, svm_runtime, svm_err
-
-
-    parameter = 'latent'
-    values = range(10, 30, 10)
 
 
     auto_runtime, auto_err, svm_runtime, svm_err = [], [], [], []
 
     for v in values:
         parameters = parametrize(parameter, v)
-        locals().update(parameters)
-        a_runtime, a_err, s_runtime, s_err = whole_model(parameters)
+        #   Here **, unzips parameters dictionary to argument before passing to the function
+        a_runtime, a_err, s_runtime, s_err = whole_model(**parameters)
         auto_runtime.append(a_runtime)
         auto_err.append(a_err)
         svm_runtime.append(s_runtime)

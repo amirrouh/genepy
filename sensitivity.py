@@ -62,7 +62,7 @@ def change_var(test_samples):
             auto_runtime.append(a_runtime)
             auto_err.append(a_err)
             svm_runtime.append(s_runtime)
-            svm_err.append(a_err)
+            svm_err.append(s_err)
         
         #   Saves a copy of runtime and accuracy .out file in temp folder with parameter's name
         np.savetxt('temp/' + str(parameter) + '_change_out.txt', [auto_runtime, auto_err, svm_runtime, svm_err], fmt ='%.5f')

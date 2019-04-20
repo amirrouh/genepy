@@ -6,7 +6,7 @@ from sensitivity import change_var
 from matplotlib import pyplot as plt
 
 #	Tesing variables are defined here 
-def var_database():
+def var_info():
 	"""
 	This function stores variable and their ranges
 
@@ -16,10 +16,14 @@ def var_database():
 
 	Returns
 	-----
-	test_samples : dic
+	var_db : dic
 		Gives variables and values used for testing
+	var_names: list
+		Gives variable names as a list
+	var_values: list
+		Gives variable values as a list
 	"""
-	test_samples = [{'input_dim': range(2000,22000,2000)},
+	var_db = [{'input_dim': range(2000,22000,2000)},
 			{'epoch': range(50, 550, 10)},
 			{'batch': range(500, 5500, 500)},
 			{'latent': range(10,110,10)},
@@ -32,7 +36,12 @@ def var_database():
 			{'c': np.logspace(1, 1e5, 10, endpoint=True)},
 			{'norm_order': range(5, 50, 5)}]
 
-	return test_samples
+	var_names, var_values = [], []
+	for item in var_db:
+		var_names.append(list(item.keys())[0])
+		var_values.append(list(item.values())[0])
+
+	return var_db, var_names, var_values
 
 
 def test():
@@ -48,7 +57,7 @@ def test():
 	-----
 	Saves *.txt files in temp folder including the sensitivity analyisis results
 	"""
-	test_samples = var_database()
+	test_samples, _, _ = var_info()
 	change_var(test_samples)
 
 	return test_samples
@@ -67,8 +76,8 @@ def plot(key):
 	-----
 	Saves key.png images in temp folder 
 	"""
-	#	Get the values of key in the var_database
-	for item in var_database():
+	#	Get the values of key in the var_db
+	for item in var_info()[0]:
 		if list(item.keys())[0] == key:
 			values = item[key]
 
@@ -101,4 +110,4 @@ def plot(key):
 	plt.savefig('temp/' + key + '.png')
 	plt.show()
 
-	return
+	return ()

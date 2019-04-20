@@ -9,8 +9,9 @@ def change_var(parameter, values):
     This module changes a parameters by the values provided and returns 
     autoencoder and SVM runtime and errors.
 
-    parameter: str
+    parameters
     ----------
+    parameter: str
         Parameters name which is to be changed
     value: NA
         Value of the parameter which is changing

@@ -16,10 +16,10 @@ def parametrize(parameter, value):
     """
 
     #   Server parameters
-    parameters = {'directory_1':'folder_address_you_want_to_sync_on_your_machine',
-        'directory_2': 'folder_address_you_want_to_sync_on_the server',
-        'key_address': 'full_address_to_your_key_file',
-        'user': 'your_username', 'server': 'newton.ist.ucf.edu',\
+    parameters = {'directory_1':'local_directory',
+        'directory_2': 'directory_on_server',
+        'key_address': 'full_address_to_the_ssh_key_file',
+        'user': 'username', 'server': 'server address',\
 
     #   Parsing parameters
         'link': 'ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1615/soft/GDS1615_full.soft.gz',
@@ -34,5 +34,19 @@ def parametrize(parameter, value):
         'train_percent' : 75, 'gamma': 0.0001, 'c' : 1000000}
 
     parameters[parameter] = value
+
+
+    keys = list(parameters.keys())
+    values = list(parameters.values())
+
+
+
+
+    #   Returns the list of lictionaries for post module
+    packed = []
+    for i in range(len(keys)):
+        key = [keys[i]]
+        value = [values[i]]
+        packed.append(dict(zip(key, value)))
     
-    return parameters
+    return parameters, packed

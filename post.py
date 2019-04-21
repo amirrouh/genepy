@@ -1,3 +1,4 @@
+from core import log
 """
 This module includes post processing functions
 """
@@ -48,13 +49,13 @@ def plot_run(parameter, values):
 	#	Adjust, save and showing the plot
 	plt.subplots_adjust(bottom =0.25, top=0.75, wspace=1)
 	plt.savefig('temp/' + parameter + '.png')
-	plt.show()
-
+	plt.clf()
 	return ()
 
 
 def plot(test_params):
 	for item in test_params:
-		key = list(item.keys())[0]
+		parameter = list(item.keys())[0]
 		values = list(item.values())[0]
-		plot_run(key, values)
+		plot_run(parameter, values)
+		log(str(parameter) + "'s plot is save in the temp folder!")

@@ -18,11 +18,11 @@ def database():
 
                   #   Parsing parameters
                   'link': 'ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1615/soft/GDS1615_full.soft.gz',
-                  'input_dim': 2000,\
+                  'input_dim': 500,\
 
                   #   Autoencoder parameters
-                  'epoch': 50, 'batch': 200, 'latent': 30, 'encoder_o': 300,
-                  'encoder_i': 100, 'decoder_i': 100, 'decoder_o': 300, 'train_percent': 75,
+                  'epoch': 50, 'batch': 200, 'latent': 30, 'encoder_o': 100,
+                  'encoder_i': 50, 'decoder_i': 50, 'decoder_o': 100, 'train_percent': 75,
                   'lam': 0.0001, 'loss_plot': False, 'norm_order': 10,\
 
                   #   SVM parameters

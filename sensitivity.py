@@ -4,7 +4,7 @@ accuracy and performance
 """
 
 
-def change_var(test_samples):
+def test(test_samples):
     """
     This module changes a parameters by the values provided and returns 
     autoencoder and SVM runtime and errors.
@@ -56,7 +56,7 @@ def change_var(test_samples):
         auto_runtime, auto_err, svm_runtime, svm_err = [], [], [], []
 
         for v in values:
-            parameters = parametrize(parameter, v)
+            parameters, _ = parametrize(parameter, v)
             #   Here **, unzips parameters dictionary to argument before passing to the function
             a_runtime, a_err, s_runtime, s_err = whole_model(**parameters)
             auto_runtime.append(a_runtime)

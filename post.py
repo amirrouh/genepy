@@ -2,66 +2,9 @@
 This module includes post processing functions
 """
 import numpy as np
-from sensitivity import change_var
+from sensitivity import test
 from matplotlib import pyplot as plt
-
-#	Tesing variables are defined here 
-def var_info():
-	"""
-	This function stores variable and their ranges
-
-	Parameters
-	-----
-	None
-
-	Returns
-	-----
-	var_db : dic
-		Gives variables and values used for testing
-	var_names: list
-		Gives variable names as a list
-	var_values: list
-		Gives variable values as a list
-	"""
-	var_db = [{'input_dim': range(2000,22000,1000)},
-			{'epoch': range(50, 550, 5)},
-			{'batch': range(500, 5500, 250)},
-			{'latent': range(10,110,5)},
-			{'encoder_i': range(100,1050,25)},
-			{'encoder_o': range(100,1050,25)},
-			{'decoder_i': range(100,1050,25)},
-			{'decoder_o': range(100,1050,25)},
-			{'train_percent': range(50,95,2)},
-			{'lam': np.linspace(1e-5, 1, 20, endpoint=True)},
-			{'c': np.linspace(1, 1e5, 20, endpoint=True)},
-			{'norm_order': range(5, 50, 2)}]
-
-	var_names, var_values = [], []
-	for item in var_db:
-		var_names.append(list(item.keys())[0])
-		var_values.append(list(item.values())[0])
-
-	return var_db, var_names, var_values
-
-
-def test():
-	"""
-	This function investigates effects of different parameters on autoencoder and SVM
-	runtime and accuracy.
-
-	Parameters
-	-----
-	None
-
-	Returns
-	-----
-	Saves *.txt files in temp folder including the sensitivity analyisis results
-	"""
-	test_samples, _, _ = var_info()
-	change_var(test_samples)
-
-	return test_samples
-
+from parameters import parametrize
 
 def plot(key):
 	"""

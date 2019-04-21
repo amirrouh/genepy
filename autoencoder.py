@@ -179,7 +179,7 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
                 plt.title('Training loss: ---, Validation loss: -.-.')
                 plt.xlabel('Epoch number')
                 plt.ylabel('MSE value')
-        
+
             else:
                 pass
 
@@ -206,7 +206,7 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
 
     #   show() function, keeps the plot open until the computation is finished
     if loss_plot:
-        show()
+        plt.show()
     else:
         pass
 
@@ -217,5 +217,6 @@ def autoencoder (epoch, batch, latent, encoder_o, encoder_i, \
     #   exporting latent file and labels for classifier
     pickle.dump(latent, open('temp/latent', 'wb'))
     pickle.dump(labels, open('temp/labels', 'wb'))
+    plt.close()
     
     return input_data, latent, reconstructed, labels, auto_runtime, auto_err

@@ -7,19 +7,18 @@ def connect(directory_1, directory_2, key_address, user, server):
     ----------
     directory_1 : str
         This arg gives the folder we want to sync on local machine
-        (1.e. '~/Dropbox/python/')
+        (1.e. 'local_directory')
     directory_2 : str
         destination address on the server 
-        (i.e. '~/Dropbox/')
+        (i.e. 'directory_on_server')
     key_address : str
         This are gets full address of the secure key file 
-        (i. e. '~/Dropbox/stokes/arouhollahi-keys/arouhollahi_id_rsa_1')
+        (i. e. 'full_address_to_the_ssh_key_file')
     user : str
-        Username
+        username
         
     server: str
         Server address
-        (i.e. )
 
     -----------
     returns:

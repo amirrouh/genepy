@@ -1,3 +1,8 @@
+#   Import required libraries
+from sklearn import svm
+import numpy as np
+import pickle
+import time
 def classify (gamma, c, train_percent):
     """
     This module uses support vector machine (SVM) to classify the cell types 
@@ -32,13 +37,6 @@ def classify (gamma, c, train_percent):
     svm_err : float
         SVM average error (%)
     """
-    #   Import required libraries
-    from sklearn import svm
-    import numpy as np
-    import pickle
-    import time
-
-
     #   Start time to measure SVM runtime
     time_start = time.time()
 

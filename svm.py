@@ -2,6 +2,17 @@ def classify (gamma, c, train_percent):
     """
     This module uses support vector machine (SVM) to classify the cell types 
     based on their compressed gene expression profile (latent vectors)
+    
+    Input dataset should look like this:
+    dataset: np array
+        dataset (i.e.: labels = dataset[:,0])
+        -------------------------------------
+        label_1 || data_11 data_12 ... data_1n
+        label_2 || data_21 data_22 ... data_2n
+        .   .   ||   
+        .   .   ||
+        label_n || data_n1 data_n2 ... data_nn
+        -------------------------------------
 
     Parameters
     ----------
